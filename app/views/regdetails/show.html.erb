@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @regdetail.user %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @regdetail.semester %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @regdetail.course %>
+</p>
+
+<p>
+  <strong>Cgpa:</strong>
+  <%= @regdetail.cgpa %>
+</p>
+
+<%= link_to 'Edit', edit_regdetail_path(@regdetail) %> |
+<%= link_to 'Back', regdetails_path %>

@@ -1,0 +1,1 @@
+json.array! @regdetails, partial: 'regdetails/regdetail', as: :regdetail

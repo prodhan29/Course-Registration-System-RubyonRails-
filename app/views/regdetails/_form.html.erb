@@ -1,0 +1,18 @@
+
+<div class="field">
+  <%= label_tag :semester_id %>
+  <%= select_tag :semester_id, options_for_select(@semester_names), :onchange =>  "course_change()" %>
+</div>
+
+<div class="field">
+
+  <div id="courses">
+    <%= render 'course_list'%>
+  </div>
+</div>
+<%= button_tag "submit", :onclick => "submit_registration()" %>
+
+
+
+
+

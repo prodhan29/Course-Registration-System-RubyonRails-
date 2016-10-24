@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  semester: one
+  course: 1
+  cgpa: 9.99
+
+two:
+  user: two
+  semester: two
+  course: 1
+  cgpa: 9.99
