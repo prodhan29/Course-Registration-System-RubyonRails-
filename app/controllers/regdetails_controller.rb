@@ -1,10 +1,13 @@
 class RegdetailsController < ApplicationController
-  before_action :set_regdetail, only: [:show, :edit, :update, :destroy]
+  before_action :set_regdetail, only: [:show, :destroy]
 
   # GET /regdetails
   # GET /regdetails.json
   def index
-    @regdetails = Regdetail.all
+    @regdetails = Regdetail.select(:user_id).distinct
+    @user_ids = @regdetails.collect { |r| r.user_id }
+    @registered_users = User.find(@user_ids)
+
   end
 
   # GET /regdetails/1
@@ -43,10 +46,8 @@ class RegdetailsController < ApplicationController
     puts "---------new submission----------"
     @course_list = params[:courses]
     @semester = Semester.find_by(name: params[:semester])
-
     # @course_names = @courses.each{|h,k| puts k[:name]}
     # @course_ids = @course.each {|h,k| puts k[:id]}
-
 
     @course_list.each{|h,k| puts k[:name]}
     @course_list.each {|h,k|
@@ -55,16 +56,11 @@ class RegdetailsController < ApplicationController
       reg.save!
       puts k[:id]
     }
-
     redirect_to controller:'regdetails', action: 'show_registration_details'
-
   end
 
   def show_registration_details
-
-    puts "---------------------- current user registration details ------------------"
     @details = current_user.regdetails
-    puts current_user.regdetails.inspect
   end
 
   private

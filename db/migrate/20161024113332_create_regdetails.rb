@@ -4,7 +4,7 @@ class CreateRegdetails < ActiveRecord::Migration[5.0]
       t.references :user, foreign_key: true
       t.references :semester, foreign_key: true
       t.integer :course
-      t.decimal :cgpa
+      t.string :cgpa
 
       t.timestamps
     end

@@ -7,22 +7,15 @@
     <tr>
       <th>User</th>
       <th>Semester</th>
-      <th>Course</th>
-      <th>Cgpa</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @regdetails.each do |regdetail| %>
+    <% @registered_users.each do |user| %>
       <tr>
-        <td><%= regdetail.user %></td>
-        <td><%= regdetail.semester %></td>
-        <td><%= regdetail.course %></td>
-        <td><%= regdetail.cgpa %></td>
-        <td><%= link_to 'Show', regdetail %></td>
-        <td><%= link_to 'Edit', edit_regdetail_path(regdetail) %></td>
-        <td><%= link_to 'Destroy', regdetail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to user.email, appuser_reg_details_path(id: user.id) %></td>
+        <td> <%= get_user_semester user %> </td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +23,3 @@
 
 <br>
 
-<%= link_to 'New Regdetail', new_regdetail_path %>

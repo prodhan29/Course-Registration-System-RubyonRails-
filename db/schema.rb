@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024113332) do
+ActiveRecord::Schema.define(version: 20161025031219) do
 
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -25,9 +25,9 @@ ActiveRecord::Schema.define(version: 20161024113332) do
     t.integer  "user_id"
     t.integer  "semester_id"
     t.integer  "course"
-    t.decimal  "cgpa",        precision: 10
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "cgpa"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.index ["semester_id"], name: "index_regdetails_on_semester_id", using: :btree
     t.index ["user_id"], name: "index_regdetails_on_user_id", using: :btree
   end
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20161024113332) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

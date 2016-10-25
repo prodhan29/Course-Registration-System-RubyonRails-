@@ -1,0 +1,10 @@
+<h1>Welcome: <%= current_user.email %></h1>
+<h3> Role: <%= get_user_type current_user %></h3>
+<% if current_user.admin %>
+  <%= link_to "All Registration details", regdetails_path %><br><br>
+  <%= link_to "All Courses", courses_path %><br><br>
+  <%= link_to "Semesters", semesters_path %><br><br>
+<%else%>
+  <%= link_to "new registration", new_regdetail_path %><br><br>
+  <%= link_to "Your Registered subject", submission_details_path %><br><br>
+<% end %>
