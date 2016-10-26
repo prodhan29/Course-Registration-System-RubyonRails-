@@ -22,6 +22,11 @@
     </div>
 
     <div class="field">
+      <%= f.label :credit %>
+      <%= f.text_field :credit %>
+    </div>
+
+    <div class="field">
       <%= f.label :semester_id %>
       <%= select_tag :semester, options_for_select(@semesters) %>
     </div>

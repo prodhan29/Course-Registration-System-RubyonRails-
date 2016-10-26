@@ -1,5 +1,22 @@
-</br><% @details.each do|d| %>
-    <%= d.semester.name %>
-    <%= get_course_name(d.course) %></br>
 
-<% end %>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Semester</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @details.each do|d| %>
+      <tr>
+        <td><%= get_course_name(d.course) %></br></td>
+        <td><%= get_course_credit(d.course) %></br></td>
+        <td><%= d.semester.name %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<h3> *Total Credits taken = <%= @total_credit %></h3>

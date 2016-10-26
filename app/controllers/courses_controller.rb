@@ -1,32 +1,26 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  # GET /courses
-  # GET /courses.json
+
   def index
     @courses = Course.all
   end
 
-  # GET /courses/1
-  # GET /courses/1.json
+
   def show
   end
 
-  # GET /courses/new
   def new
     @course = Course.new
     @semesters = Semester.pluck(:name)
     puts @semesters.inspect
   end
 
-  # GET /courses/1/edit
   def edit
     @semesters = Semester.all
     @semesters = @semesters.collect{|s| s.name}
   end
 
-  # POST /courses
-  # POST /courses.json
   def create
     @course = Course.new(course_params)
     @sem  = Semester.find_by(name: params[:semester])
@@ -42,8 +36,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
+
   def update
     respond_to do |format|
       if @course.update(course_params)
@@ -56,8 +49,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
-  # DELETE /courses/1.json
+
   def destroy
     @course.destroy
     respond_to do |format|
@@ -74,6 +66,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :code, :semester_id)
+      params.require(:course).permit(:name, :code, :semester_id, :credit)
     end
 end

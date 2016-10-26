@@ -14,4 +14,10 @@ module ApplicationHelper
     @course = Course.find(id)
     @course.code
   end
+
+  def get_course_credit id
+    Course.find(id).credit
+  end
+
+
 end

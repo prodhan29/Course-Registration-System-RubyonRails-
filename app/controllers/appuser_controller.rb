@@ -3,10 +3,16 @@ class AppuserController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @registered = Regdetail.exists?(:user_id => current_user)
+    puts "---------------------"
+    puts
   end
 
   def course_result
     @user = User.find(params[:id])
+  end
+
+  def publish_result
   end
 
   def update

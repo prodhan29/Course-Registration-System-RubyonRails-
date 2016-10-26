@@ -1,7 +1,9 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Course Name </th>
+    <th>Course name </th>
+    <th>code</th>
+    <th>credit </th>
     <th></th>
   </tr>
   </thead>
@@ -10,6 +12,8 @@
 
     <tr>
       <td> <%= label_tag c.name %></td>
+      <td><bold> <%= label_tag c.code %> </bold></td>
+      <td> <%= label_tag c.credit %>
       <td> <%= check_box_tag c.name, nil,nil,:id => c.id %> </td>
     </tr>
 <%end%>

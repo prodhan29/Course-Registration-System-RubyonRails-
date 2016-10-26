@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   get 'appuser/index'
 
   get 'appuser/course_result'
+
+  get 'appuser/publish_result'
 
   get 'appuser/update'
 

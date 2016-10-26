@@ -1,10 +1,16 @@
 <h1>Welcome: <%= current_user.email %></h1>
-<h3> Role: <%= get_user_type current_user %></h3>
+<h2> Role: <%= get_user_type current_user %></h2>
 <% if current_user.admin %>
   <%= link_to "All Registration details", regdetails_path %><br><br>
   <%= link_to "All Courses", courses_path %><br><br>
   <%= link_to "Semesters", semesters_path %><br><br>
+
 <%else%>
-  <%= link_to "new registration", new_regdetail_path %><br><br>
-  <%= link_to "Your Registered subject", submission_details_path %><br><br>
+    <%= link_to "Your Registered subject", submission_details_path %><br><br>
+    <%= link_to "Result", appuser_publish_result_path %>
+  <% if @registered %>
+      <h3> You are already a registerd student </h3>
+  <%else%>
+        <%= link_to "new registration", new_regdetail_path %><br><br>
+  <% end %>
 <% end %>
