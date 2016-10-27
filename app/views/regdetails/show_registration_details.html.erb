@@ -1,5 +1,5 @@
-
-<table>
+<div class="container">
+<table class ="table">
   <thead>
   <tr>
     <th>Name</th>
@@ -18,5 +18,10 @@
   <% end %>
   </tbody>
 </table>
-
-<h3> *Total Credits taken = <%= @total_credit %></h3>
+<% if @total_credit == 0 %>
+  <h3> You are not a registered student</h3>
+   please go to this link (<%= link_to "new Registration", new_regdetail_path %>) to get registered
+<% else %>
+    <h3> *Total Credits taken = <%= @total_credit %></h3>
+<% end %>
+</div>

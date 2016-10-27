@@ -1,4 +1,4 @@
-
+<div class="container">
 <h2> Student email: <%= @user.email %></h2>
 <table class="table">
   <thead>
@@ -19,6 +19,7 @@
   </tbody>
 </table>
 </br>
-<button onclick="get_results(<%= @user.id %>)">Submit </button></br></br>
+<button class = "btn btn-sm btn-success" onclick="get_results(<%= @user.id %>)">Submit </button></br></br>
 <%= link_to "All Registrations", regdetails_path %>
 
+</div>

@@ -20,7 +20,11 @@ class AppuserController < ApplicationController
     @total_credit = courses.inject(0) { |sum, c| sum+c.credit.to_d  }
     @cgpa =0
     credit_list.zip(result_list){|c,r| @cgpa+=(c.to_d * r.to_d)}
+    begin
     @cgpa = @cgpa/@total_credit
+    rescue Exception => e
+    end
+
     puts "------"
   end
 

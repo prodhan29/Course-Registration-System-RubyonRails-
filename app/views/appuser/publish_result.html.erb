@@ -1,4 +1,4 @@
-
+<div class="container">
 <h2> Student email: <%= current_user.email %></h2>
 <table class="table">
   <thead>
@@ -20,9 +20,15 @@
   <% end %>
   </tbody>
 </table>
-<h1> Total Credits = <%= @total_credit %></h1>
-<h1> CGPA = <%= @cgpa.round(2) %></h1>
+  <% if @cgpa == 0 %>
+    <h3> your result is not published yet</h3>
+  <% else %>
+      <h3> Total Credits = <%= @total_credit %></h3>
+      <h3> CGPA = <%= @cgpa.round(2) %></h3>
+  <% end %>
+
 
 </br>
+</div>
 
 

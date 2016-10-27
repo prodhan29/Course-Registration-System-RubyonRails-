@@ -1,24 +1,25 @@
-
-<h2> Student email: <%= @user.email %></h2>
-<h3> See <%= link_to "Result", appuser_course_result_path(id: @user)%> </h3>
-<table class="table">
-  <thead>
-  <tr>
-    <th>Course name</th>
-    <th>Course code</th>
-    <th>Semester</th>
-
-  </tr>
-  </thead>
-  <tbody>
-  <% @user.regdetails.each do |r| %>
+<div class="container">
+  <h2> Student email: <%= @user.email %></h2>
+  <h3> See <%= link_to "Result", appuser_course_result_path(id: @user)%> </h3>
+  <table class="table">
+    <thead>
     <tr>
-      <td><%= get_course_name r.course %></td>
-      <td><%= get_course_code r.course %></td>
-      <td><%= r.semester.name %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+      <th>Course name</th>
+      <th>Course code</th>
+      <th>Semester</th>
 
-<%= link_to "All Registrations", regdetails_path %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @user.regdetails.each do |r| %>
+      <tr>
+        <td><%= get_course_name r.course %></td>
+        <td><%= get_course_code r.course %></td>
+        <td><%= r.semester.name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to "All Registrations", regdetails_path %>
+</div>
