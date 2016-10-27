@@ -4,7 +4,8 @@
   <thead>
   <tr>
     <th>Course name</th>
-    <th>Course code</th>
+    <th>code</th>
+    <th>credit</th>
     <th>Result</th>
   </tr>
   </thead>
@@ -13,11 +14,14 @@
       <tr>
         <td> <%= get_course_name r.course %></td>
         <td> <%= get_course_code r.course %></td>
+        <td> <%= get_course_credit r.course %> </td>
         <td> <%= get_result r.cgpa %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+<h1> Total Credits = <%= @total_credit %></h1>
+<h1> CGPA = <%= @cgpa.round(2) %></h1>
 
 </br>
 

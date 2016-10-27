@@ -64,9 +64,6 @@ class RegdetailsController < ApplicationController
     course_ids = Regdetail.where(:user_id => current_user.id).pluck(:course)
     courses = Course.find(course_ids)
     @total_credit = courses.inject(0) { |sum, c| sum+c.credit.to_d  }
-    puts "------------------"
-    puts @total_credit.inspect
-
   end
 
   private
