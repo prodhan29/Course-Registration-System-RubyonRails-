@@ -8,6 +8,9 @@ class AppuserController < ApplicationController
     puts
   end
 
+  def edit_profile
+  end
+
   def course_result
     @user = User.find(params[:id])
   end
@@ -29,6 +32,11 @@ class AppuserController < ApplicationController
   end
 
   def update
+    @user = User.find(current_user.id);
+    @user.update(user_params)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def reg_details
@@ -43,5 +51,14 @@ class AppuserController < ApplicationController
        puts r.cgpa.class
     }
     @user.regdetails.each(&:save)
+    CourseSystemMailer.publish_result("02nahid02@gmail.com").deliver
+    respond_to do|format|
+      format.js {}
+    end
   end
 end
+
+private
+  def user_params
+    params.require(:user).permit(:name, :password)
+  end

@@ -7,10 +7,15 @@
 <div class="field">
 
   <div id="courses">
-    <%= render 'course_list'%>
+    <%= render 'course_list', :courses => courses, :update => true %>
   </div>
 </div>
-<%= button_tag "submit", :onclick => "submit_registration()" %>
+
+<% if edit_option %>
+    <%= button_tag "update", :onclick => "update_registration()" %>
+<% else %>
+    <%= button_tag "submit", :onclick => "submit_registration()" %>
+<% end %>
 
 
 

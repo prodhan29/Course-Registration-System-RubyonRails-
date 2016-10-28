@@ -6,9 +6,11 @@
     <%= link_to "All Courses", courses_path %><br><br>
     <%= link_to "Semesters", semesters_path %><br><br>
 
+
   <%else%>
       <% if @registered %>
           <h3> You are a registerd student </h3>
+          <%= link_to "Edit your Registration", regdetails_edit_reg_path %><br><br>
       <%else%>
           <%= link_to "new registration", new_regdetail_path %><br><br>
       <% end %>

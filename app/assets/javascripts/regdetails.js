@@ -10,6 +10,24 @@ var course_change =  function(e){
 
 var submit_registration =  function(){
 
+    var ob = {
+        semester : document.getElementById("semester_id").value,
+        courses  : get_course_calculation()
+    }
+    server_call("/regsubmit",ob)
+}
+
+var update_registration =function(){
+
+    var ob = {
+        semester : document.getElementById("semester_id").value,
+        courses  : get_course_calculation()
+    }
+    server_call("/regdetails/update_reg",ob)
+}
+
+var get_course_calculation =function(){
+
     var ins = document.getElementsByTagName("input");
     var courses = [];
 
@@ -22,14 +40,9 @@ var submit_registration =  function(){
             });
         }
     }
-    var ob = {
-        semester : document.getElementById("semester_id").value,
-        courses  : courses
-    }
-    server_call("/regsubmit",ob)
+    return courses;
 
 }
-
 var server_call = function(path, ob){
 
     $.post(path, ob,function(){

@@ -8,18 +8,21 @@
   </tr>
   </thead>
   <tbody>
-<% @courses.each do|c|%>
+<% courses.each_with_index do|c|%>
 
     <tr>
       <td> <%= label_tag c.name %></td>
       <td><bold> <%= label_tag c.code %> </bold></td>
       <td> <%= label_tag c.credit %>
-      <td> <%= check_box_tag c.name, nil,nil,:id => c.id %> </td>
+      <% if update %>
+          <td> <%= check_box_tag c.name, nil, check_course(c.id) ,:id => c.id%> </td>
+      <% else %>
+          <td> <%= check_box_tag c.name, nil,nil,:id => c.id %> </td>
+      <% end %>
+
     </tr>
 <%end%>
 </tbody>
 </table>
-
-
 
 

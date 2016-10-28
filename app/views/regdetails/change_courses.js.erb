@@ -1,4 +1,4 @@
 console.log("hoise")
-$("#courses").html("<%= escape_javascript render('course_list') %>")
+$("#courses").html("<%= escape_javascript render('course_list', :courses => @courses,:update => true) %>")
 
 <%= puts 'fh' %>

@@ -6,9 +6,15 @@ Rails.application.routes.draw do
 
   get 'appuser/publish_result'
 
-  get 'appuser/update'
+  patch 'appuser/update'
+
+  get 'appuser/edit_profile'
 
   get 'appuser/reg_details'
+
+  get 'regdetails/edit_reg'
+
+  post 'regdetails/update_reg'
 
   post 'appuser/submit_result'
 

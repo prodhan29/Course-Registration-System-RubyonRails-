@@ -15,6 +15,35 @@ class RegdetailsController < ApplicationController
   def show
   end
 
+  def edit_reg
+    @all_semester = Semester.all
+    @semester_names = @all_semester.collect{|s| s.name}
+    @courses = @all_semester[0].courses
+    @current_semester = Regdetail.find_by(user: current_user).semester
+    course_ids = Regdetail.where(user_id: current_user.id).pluck(:course)
+    @taken_courses = Course.find(course_ids)
+
+    # ---------------- setting active semester and courses----------
+    semester_index= @semester_names.index(@current_semester.name)
+    @courses = @all_semester[semester_index].courses
+    @semester_names.delete(@current_semester.name)
+    @semester_names.unshift(@current_semester.name)
+
+  end
+
+  def update_reg
+    puts "-----------working";
+    Regdetail.where(user: current_user).destroy_all
+    Regdetail.save_registration params, current_user
+    course_ids = Regdetail.where(user_id: current_user.id).pluck(:course)
+    @courses = Course.find(course_ids)
+
+    CourseSystemMailer.publish_result("02nahid02@gmail.com").deliver
+    respond_to do |format|
+      format.js{}
+    end
+  end
+
   # GET /regdetails/new
   def new
     @all_semester = Semester.all
@@ -38,24 +67,14 @@ class RegdetailsController < ApplicationController
     @sem = Semester.find_by(name: params[:semester])
     @courses = @sem.courses
     respond_to do |format|
-      format.js{@courses}
+      format.js{}
     end
   end
 
   def reg_submission
     puts "---------new submission----------"
-    @course_list = params[:courses]
-    @semester = Semester.find_by(name: params[:semester])
-    # @course_names = @courses.each{|h,k| puts k[:name]}
-    # @course_ids = @course.each {|h,k| puts k[:id]}
+    Regdetail.save_registration params, current_user
 
-    @course_list.each{|h,k| puts k[:name]}
-    @course_list.each {|h,k|
-
-      reg = Regdetail.new(user: current_user, semester: @semester, course: k[:id], cgpa: 0.0)
-      reg.save!
-      puts k[:id]
-    }
     redirect_to controller:'regdetails', action: 'show_registration_details'
   end
 
