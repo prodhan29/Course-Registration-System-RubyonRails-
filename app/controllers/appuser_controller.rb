@@ -8,6 +8,11 @@ class AppuserController < ApplicationController
     puts
   end
 
+  def get_all_users
+    @all_users = User.all
+  end
+
+
   def edit_profile
   end
 
@@ -54,6 +59,16 @@ class AppuserController < ApplicationController
     CourseSystemMailer.publish_result("02nahid02@gmail.com").deliver
     respond_to do|format|
       format.js {}
+    end
+  end
+
+  def update_role
+    @user = User.find(params[:id])
+    @user.admin = params[:role]
+    @user.save!
+    @all_users = User.all
+    respond_to do |format|
+      format.js
     end
   end
 end

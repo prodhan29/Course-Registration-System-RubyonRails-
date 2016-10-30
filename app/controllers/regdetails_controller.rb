@@ -38,7 +38,6 @@ class RegdetailsController < ApplicationController
     course_ids = Regdetail.where(user_id: current_user.id).pluck(:course)
     @courses = Course.find(course_ids)
 
-    CourseSystemMailer.publish_result("02nahid02@gmail.com").deliver
     respond_to do |format|
       format.js{}
     end

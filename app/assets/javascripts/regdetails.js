@@ -1,3 +1,4 @@
+var user_id = -1;
 
 var course_change =  function(e){
 
@@ -42,6 +43,22 @@ var get_course_calculation =function(){
     }
     return courses;
 
+}
+var change_user_role =function(event){
+
+    user_id = event.target.id;
+    document.getElementById("user_email").innerHTML = event.target.innerHTML;
+    $("#roleModal").modal("show");
+}
+
+var change_role =function(event){
+
+    console.log( document.getElementById("user_role").value );
+    ob ={
+        id: user_id,
+        role: document.getElementById("user_role").value
+    }
+    server_call("/appuser/update_role",ob);
 }
 var server_call = function(path, ob){
 

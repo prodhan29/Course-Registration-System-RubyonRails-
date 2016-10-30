@@ -1,0 +1,9 @@
+<% all_users.each do |user| %>
+    <tr>
+      <td id = "<%= user.id %>" style ="color: #0D47A1; cursor: pointer" onclick="change_user_role(event)">
+        <%= user.email%>
+      </td>
+      <td > <%= get_user_type user %></td>
+      <td> </td>
+    </tr>
+<% end %>
