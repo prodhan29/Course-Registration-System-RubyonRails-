@@ -5,6 +5,10 @@ module ApplicationHelper
     end
   end
 
+  def hi_user
+    "Welcome "+current_user.email
+  end
+
   def get_course_name id
     @course = Course.find(id)
     @course.name

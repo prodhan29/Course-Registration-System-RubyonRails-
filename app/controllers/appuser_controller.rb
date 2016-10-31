@@ -4,16 +4,21 @@ class AppuserController < ApplicationController
 
   def index
     @registered = Regdetail.exists?(:user_id => current_user)
-    puts "---------------------"
-    puts
+    if current_user.admin
+      @semester_info = Hash.new
+      @user_types = User.group(:admin).count
+      @new_students = User.where(:admin=>false).last(5).reverse
+      semesters = Semester.all
+      semesters.each do |s|
+        @semester_info[s.name] = s.courses.count
+      end
+    else
+
+    end
   end
 
   def get_all_users
     @all_users = User.all
-  end
-
-
-  def edit_profile
   end
 
   def course_result
@@ -56,7 +61,7 @@ class AppuserController < ApplicationController
        puts r.cgpa.class
     }
     @user.regdetails.each(&:save)
-    CourseSystemMailer.publish_result("02nahid02@gmail.com").deliver
+    CourseSystemMailer.publish_result(@user.email).deliver
     respond_to do|format|
       format.js {}
     end

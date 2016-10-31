@@ -4,6 +4,11 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    @semesters = Hash.new
+    @semesters["All"]=0
+    Semester.all.each do|s|
+      @semesters[s.name] = s.id
+    end
   end
 
 
@@ -46,6 +51,16 @@ class CoursesController < ApplicationController
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def semester_courses
+
+    puts params[:id].class
+    @courses = (params[:id] == "0")?Course.all : Semester.find(params[:id]).courses
+
+    respond_to do |format|
+      format.js{}
     end
   end
 

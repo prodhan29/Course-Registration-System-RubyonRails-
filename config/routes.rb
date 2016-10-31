@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get 'appuser/allusers', :controller => "appuser", :action => 'get_all_users'
 
+  post 'courses/semester_courses'
+
   resources :regdetails
   resources :courses
   resources :semesters

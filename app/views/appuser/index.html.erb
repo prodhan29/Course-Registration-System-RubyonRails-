@@ -1,22 +1,41 @@
-<div class="container" style ="background-color: #F5F5F5;padding: 25px">
-  <h1> user: <%= current_user.email %></h1>
-  <h3> Role: <%= get_user_type current_user %></h3>
-  <% if current_user.admin %>
-    <%= link_to "All Registration details", regdetails_path %><br><br>
-    <%= link_to "All Courses", courses_path %><br><br>
-    <%= link_to "Semesters", semesters_path %><br><br>
-    <%= link_to "All users", appuser_allusers_path %> <br><br>
-
-
-  <%else%>
-      <% if @registered %>
-          <h3> You are a registerd student </h3>
-          <%= link_to "Edit your Registration", regdetails_edit_reg_path %><br><br>
-      <%else%>
-          <%= link_to "new registration", new_regdetail_path %><br><br>
-      <% end %>
-      <%= link_to "Your Registered subject", submission_details_path %><br><br>
-      <%= link_to "Result", appuser_publish_result_path %>
-
-  <% end %>
+<% if current_user.admin %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4>New Students</h4>
+      <hr>
+      <ol class="list-group">
+        <% @new_students.each_with_index do |student, index| %>
+            <li class="list-group-item">
+              <%= index+1 %>. <%=student.email %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-sm-4">
+      <h4>Semester info</h4>
+      <hr>
+      <ol class="list-group">
+        <% @semester_info.each do |k,v| %>
+            <li class="list-group-item">
+              name: <strong style="color:#006064"><%= k%></strong>
+              subjects:<strong style="color:#006064" ><%= v %></strong>
+            </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-sm-4">
+      <h4>Users</h4>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item">Admin
+          <span class="badge" style="background-color: #E91E63">
+            <%= @user_types[true] %>
+          </span>
+        </li>
+        <li class="list-group-item">Students<span class="badge"><%= @user_types[false]%></span></li>
+      </ul>
+    </div>
+  </div>
 </div>
+<% else %>
+<% end %>
