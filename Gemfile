@@ -8,6 +8,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'will_paginate', '~> 3.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -25,6 +26,8 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

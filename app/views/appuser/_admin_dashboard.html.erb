@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4>New Students</h4>
+      <hr>
+      <ol class="list-group">
+        <% @new_students.each_with_index do |student, index| %>
+            <li class="list-group-item">
+              <%= index+1 %>. <%=student.email %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-sm-4">
+      <h4>Semester info</h4>
+      <hr>
+      <ol class="list-group">
+        <% @semester_info.each do |k,v| %>
+            <li class="list-group-item">
+              name: <strong style="color:#006064"><%= k%></strong>
+              subjects:<strong style="color:#006064" ><%= v %></strong>
+            </li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="col-sm-4">
+      <h4>Users</h4>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item">Admin
+          <span class="badge" style="background-color: #E91E63">
+            <%= @user_types[true] %>
+          </span>
+        </li>
+        <li class="list-group-item">Students<span class="badge"><%= @user_types[false]%></span></li>
+      </ul>
+    </div>
+  </div>
+</div>

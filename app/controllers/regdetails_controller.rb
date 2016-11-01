@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class RegdetailsController < ApplicationController
   before_action :set_regdetail, only: [:show, :destroy]
 
@@ -6,7 +8,8 @@ class RegdetailsController < ApplicationController
   def index
     @regdetails = Regdetail.select(:user_id).distinct
     @user_ids = @regdetails.collect { |r| r.user_id }
-    @registered_users = User.find(@user_ids)
+    @registered_users = User.find(@user_ids).paginate(:page => params[:page], :per_page => 5)
+    # @registered_users = @registered_users.paginate(:page => params[:page], :per_page => 4)
 
   end
 
@@ -32,12 +35,11 @@ class RegdetailsController < ApplicationController
   end
 
   def update_reg
-    puts "-----------working";
     Regdetail.where(user: current_user).destroy_all
+
     Regdetail.save_registration params, current_user
     course_ids = Regdetail.where(user_id: current_user.id).pluck(:course)
     @courses = Course.find(course_ids)
-
     respond_to do |format|
       format.js{}
     end
@@ -71,15 +73,18 @@ class RegdetailsController < ApplicationController
   end
 
   def reg_submission
-    puts "---------new submission----------"
-    Regdetail.save_registration params, current_user
+    semester = Semester.find_by(name: params[:semester])
+    cs = CompletedSemester.new(user: current_user, semester: semester,cgpa: "0")
+    cs.save!
 
+    Regdetail.save_registration params, current_user
     redirect_to controller:'regdetails', action: 'show_registration_details'
   end
 
   def show_registration_details
-    @details = current_user.regdetails
-    course_ids = Regdetail.where(:user_id => current_user.id).pluck(:course)
+    semester = get_current_semester current_user
+    @details = Regdetail.where(user: current_user, semester: semester)
+    course_ids = Regdetail.where(:user => current_user, :semester => semester).pluck(:course)
     courses = Course.find(course_ids)
     @total_credit = courses.inject(0) { |sum, c| sum+c.credit.to_d  }
   end
@@ -89,6 +94,15 @@ class RegdetailsController < ApplicationController
     def set_regdetail
       @regdetail = Regdetail.find(params[:id])
     end
+
+  def get_current_semester(user)
+    cs = CompletedSemester.where(user: user).last(1)
+    begin
+      cs[0].semester
+    rescue Exception => e
+    end
+
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def regdetail_params

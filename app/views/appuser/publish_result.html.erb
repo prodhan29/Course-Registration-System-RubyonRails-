@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody>
-  <% current_user.regdetails.each do |r|  %>
+  <% @regdetails.each do |r|  %>
       <tr>
         <td> <%= get_course_name r.course %></td>
         <td> <%= get_course_code r.course %></td>
