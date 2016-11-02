@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   post 'appuser/submit_result'
 
+  post 'appuser/get_past_result'
+
   post 'appuser/update_role'
 
   get 'appuser/allusers', :controller => "appuser", :action => 'get_all_users'

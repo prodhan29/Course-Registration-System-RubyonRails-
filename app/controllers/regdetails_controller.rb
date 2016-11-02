@@ -22,7 +22,7 @@ class RegdetailsController < ApplicationController
     @all_semester = Semester.all
     @semester_names = @all_semester.collect{|s| s.name}
     @courses = @all_semester[0].courses
-    @current_semester = Regdetail.find_by(user: current_user).semester
+    @current_semester = get_current_semester current_user
     course_ids = Regdetail.where(user_id: current_user.id).pluck(:course)
     @taken_courses = Course.find(course_ids)
 

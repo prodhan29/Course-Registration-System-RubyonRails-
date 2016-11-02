@@ -1,34 +1,13 @@
 <div class="container">
-<h2> Student email: <%= current_user.email %></h2>
-<table class="table">
-  <thead>
-  <tr>
-    <th>Course name</th>
-    <th>code</th>
-    <th>credit</th>
-    <th>Result</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @regdetails.each do |r|  %>
-      <tr>
-        <td> <%= get_course_name r.course %></td>
-        <td> <%= get_course_code r.course %></td>
-        <td> <%= get_course_credit r.course %> </td>
-        <td> <%= get_result r.cgpa %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-  <% if @cgpa == 0 %>
-    <h3> your result is not published yet</h3>
-  <% else %>
-      <h3> Total Credits = <%= @total_credit %></h3>
-      <h3> CGPA = <%= @cgpa.round(2) %></h3>
-  <% end %>
+<h2> Student: <%= current_user.email %></h2>
+<div class = "col-sm-3">
+  <h4> Semester: <%= select_tag "semester",
+                      options_for_select(@completed_semester),
+                      :class=> "form-control",
+                      :onchange => "get_past_result()" %></h4>
 
-
-</br>
 </div>
-
-
+  <div id ="semester-result">
+    <%= render "result" %>
+  </div>
+</div>

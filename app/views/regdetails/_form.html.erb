@@ -1,8 +1,10 @@
 
-<div class="field">
-  <%= label_tag :semester_id %>
-  <%= select_tag :semester_id, options_for_select(@semester_names), :onchange =>  "course_change()" %>
-</div>
+  <div class="row">
+    <div class="col-sm-2"> <h3 style ="color: #795548">Semester</h3>  </div>
+    <div class="col-sm-4">
+       <%= select_tag :semester_id, options_for_select(@semester_names), :onchange =>  "course_change()", :class => "form-control", :style => "margin-top: 18px;" %>
+    </div>
+  </div>
 
 <div class="field">
 
@@ -12,9 +14,9 @@
 </div>
 
 <% if edit_option %>
-    <%= button_tag "update", :onclick => "update_registration()" %>
+    <%= button_tag "update", :onclick => "update_registration()", :class => "btn btn-danger" %>
 <% else %>
-    <%= button_tag "submit", :onclick => "submit_registration()" %>
+    <%= button_tag "submit", :onclick => "submit_registration()", :class => "btn btn-success" %>
 <% end %>
 
 

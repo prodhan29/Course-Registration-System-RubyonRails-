@@ -1,6 +1,8 @@
 
 <div class ="container">
-  <h2>Regdetails</h2>
+  <div class ="jumbotron">
+    <h2 style ="padding-left: 35%" >Registered Students</h2>
+  </div>
   <table id = "usertable" class = "table">
     <thead>
       <tr>
@@ -20,6 +22,6 @@
     </tbody>
   </table>
   <br>
-  <%= will_paginate @registered_users %>
+  <%= will_paginate @registered_users, renderer: BootstrapPagination::Rails %>
 </div>
 

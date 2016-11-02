@@ -1,29 +1,33 @@
 <div class="container">
-
-  <div class="col-sm-10">
-    <h1>Courses</h1>
-    <hr>
-    <%= link_to 'New Course', new_course_path %>
+  <div class ="row">
+    <div class="col-sm-10">
+      <h1>Courses</h1>
+      <hr>
+      <%= link_to 'New Course', new_course_path %>
+    </div>
+    <div class="col-sm-2">
+      <%= select_tag "semester", options_for_select(@semesters), :class =>"form-control", :onclick => "get_courses()" %>
+    </div>
   </div>
-  <div class="col-sm-2">
-    <%= select_tag "semester", options_for_select(@semesters), :class =>"form-control", :onclick => "get_courses()" %>
+  <div class ="row">
+    <div class ="col-sm-12">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Credit</th>
+          <th>Semester</th>
+          <th colspan="1"></th>
+        </tr>
+        </thead>
+
+        <tbody id="all-courses">
+          <%= render "courses", :courses => @courses %>
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Code</th>
-    <th>Semester</th>
-    <th colspan="1"></th>
-  </tr>
-  </thead>
-
-  <tbody id="all-courses">
-    <%= render "courses", :courses => @courses %>
-  </tbody>
-</table>
 
 <br>
 

@@ -14,7 +14,7 @@
     <%= render "allusers",:all_users => @all_users %>
     </tbody>
   </table>
-    <%= will_paginate @all_users %>
+    <%= will_paginate @all_users, renderer: BootstrapPagination::Rails %>
   </div>
 </div>
 

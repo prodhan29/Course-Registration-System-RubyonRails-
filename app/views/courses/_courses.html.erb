@@ -2,9 +2,14 @@
     <tr>
       <td><%= course.name %></td>
       <td><%= course.code %></td>
+      <td><%= course.credit %></td>
       <td><%= course.semester.name %></td>
-      <td><%= link_to 'Show', course %></td>
-      <td><%= link_to 'Edit', edit_course_path(course) %></td>
-      <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to '', course, :class=>"glyphicon glyphicon-list-alt" %></td>
+      <td><%= link_to '', edit_course_path(course),:class=>"glyphicon glyphicon-edit" %></td>
+      <td>
+
+          <%= link_to '', course, method: :delete, data: { confirm: 'Are you sure?' }, :class=>"glyphicon glyphicon-trash" %>
+
+      </td>
     </tr>
 <% end %>

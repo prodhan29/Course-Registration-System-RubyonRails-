@@ -14,3 +14,13 @@ var get_results = function(id){
     });
 
 }
+
+var get_past_result =function(id){
+
+    var ob = {
+        id: document.getElementById("semester").value
+    }
+    $.post("/appuser/get_past_result",ob,function(){
+        console.log("successfully sent !!");
+    });
+}

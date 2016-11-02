@@ -9,6 +9,7 @@ gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'will_paginate', '~> 3.1'
+gem 'will_paginate-bootstrap'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

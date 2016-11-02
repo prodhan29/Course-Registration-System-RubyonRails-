@@ -1,0 +1,33 @@
+<div class = "col-sm-10">
+  <table class="table ">
+    <thead>
+    <tr>
+      <th>Course name</th>
+      <th>code</th>
+      <th>credit</th>
+      <th>Result</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% @regdetails.each do |r|  %>
+        <tr>
+          <td> <%= get_course_name r.course %></td>
+          <td> <%= get_course_code r.course %></td>
+          <td> <%= get_course_credit r.course %> </td>
+          <td> <%= get_result r.cgpa %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div class="col-sm-6">
+  <% if @cgpa == 0 %>
+      <div class="alert alert-danger">
+        your result is not published yet
+      </div>
+  <% else %>
+      <h3> Total Credits = <%= @total_credit %></h3>
+      <h3> CGPA = <%= @cgpa.round(2) %></h3>
+  <% end %>
+</div>

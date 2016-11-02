@@ -1,7 +1,6 @@
 <div class="container">
 <h3> user: <%= current_user.email %> </h3>
-
-<%= render 'form', regdetail: @regdetail, courses: @courses, edit_option: false%>
-
-<%= link_to 'Back', regdetails_path %>
+  <div class ="col-sm-10">
+    <%= render 'form', regdetail: @regdetail, courses: @courses, edit_option: false%>
+  </div>
 </div>

@@ -1,27 +1,31 @@
 <div class="container">
   <div class ="row">
-    <div class ="col-sm-6">
+    <div class ="col-sm-6" style="padding: 25px">
       <h4>Current Semester</h4>
-      <hr>
+      <hr style ="border-top: 2px solid #E0E0E0">
       <% if @current_semester.nil? %>
-          you are not a registered student. please enroll in a semester
-          <%= link_to "new registraiton", new_regdetail_path %>
+          <div class="alert alert-warning">
+            you are not a registered student. please enroll in a semester
+            <%= link_to "new registraiton", new_regdetail_path %>
+          </div>
       <% else %>
-          Name: <%= @current_semester.name %></br></br>
-          Subjects: <%= @current_subjects %></br></br>
-          CGPA : <%= @current_cgpa %></br></br>
-          Total credits : <%= @current_credit %></br>
+          Name:  <strong><%= @current_semester.name %> </strong></br></br>
+          Subjects:  <strong><%= @current_subjects %></strong></br></br>
+          CGPA :  <strong><%= @current_cgpa.round(2) %></strong></br></br>
+          Total credits :  <strong><%= @current_credit %></strong></br>
       <% end %>
     </div>
-    <div class ="col-sm-6">
+    <div class ="col-sm-6" style=" padding: 25px">
       <h4>Previous Semester</h4>
-      <hr>
+      <hr style ="border-top: 2px solid #E0E0E0">
       <% if @previous_semester.nil? or @current_semester == @previous_semester %>
-        <p>you have no previuos record</p>
+          <div class="alert alert-info">
+            <strong> you have no previous record. </strong>
+          </div>
       <% else %>
           Name: <%= @previous_semester.name %></br></br>
           Subjects: <%= @previous_subjects %></br></br>
-          CGPA : <%= @previous_cgpa %></br></br>
+          CGPA : <%= @previous_cgpa.round(2) %></br></br>
           Total credits : <%= @previous_credit %></br>
       <% end %>
 

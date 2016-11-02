@@ -37,11 +37,28 @@ class AppuserController < ApplicationController
 
   # to show current-user's his result
   def publish_result
+    @completed_semester =Hash.new
+    semester_ids = CompletedSemester.where(user: current_user).pluck(:semester_id)
+    semesters = Semester.find(semester_ids)
+    semesters.each{|s|
+      @completed_semester[s.name]=s.id
+    }
+    @completed_semester = Hash[@completed_semester.to_a.reverse]
+    @semester = get_current_semester current_user
+    @regdetails = Regdetail.where(user: current_user, semester:  @semester)
+    @cgpa, @total_credit = credits_and_cgpa @semester
 
-    semester = get_current_semester current_user
-    @regdetails = Regdetail.where(user: current_user, semester:  semester)
-    @cgpa, @total_credit = credits_and_cgpa semester
   end
+
+  def get_past_result
+    current_semester = Semester.find(params[:id])
+    @regdetails = Regdetail.where(user: current_user, semester:  current_semester)
+    @cgpa, @total_credit = credits_and_cgpa current_semester
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   def update
     @user = User.find(current_user.id);
