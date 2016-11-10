@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get 'appuser/index'
 
   get 'appuser/course_result'
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   resources :regdetails
   resources :courses
   resources :semesters
-  devise_for :users
+
   root "appuser#index"
   post '/changecourse', :controller => 'regdetails', :action => 'change_courses'
   post '/regsubmit', :controller => 'regdetails', :action => 'reg_submission'

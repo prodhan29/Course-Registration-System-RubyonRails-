@@ -10,6 +10,12 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
 gem 'will_paginate', '~> 3.1'
 gem 'will_paginate-bootstrap'
+
+#for google authentication
+gem 'omniauth'
+gem 'omniauth-oauth2'
+gem 'omniauth-google-oauth2'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
