@@ -15,6 +15,7 @@ gem 'will_paginate-bootstrap'
 gem 'omniauth'
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
